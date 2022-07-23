@@ -10,7 +10,7 @@ import Header from "./Header";
 export default function App() {
   const [cartItems, setCartItems] = useState([]);
 
-  console.log(cartItems);
+  // console.log(cartItems);
 
   return (
     <BrowserRouter>

@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 import styles from "./loginstyles.module.css";
 
+import { useSelector, useDispatch } from "react-redux"
+
+import { loginSuccess }  from "./redux/actions/user.actions"
+
+
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
-  console.log(props);
+  const dispatch = useDispatch()
+  const user = useSelector(state => state);
+
 
   useEffect(() => {
     const authenticated = localStorage.getItem("authenticated");
@@ -27,10 +34,13 @@ const Login = (props) => {
       return;
     }
 
-    console.log(userCreds);
+    // console.log(userCreds);
     localStorage.setItem("email", email);
     localStorage.setItem("authenticated", true);
     props.history.push("/home");
+
+    dispatch(loginSuccess(email))
+
   };
 
   const onEmailChange = (e) => {
@@ -68,6 +78,7 @@ const Login = (props) => {
     </div>
   );
 };
+
 
 export default Login;
 

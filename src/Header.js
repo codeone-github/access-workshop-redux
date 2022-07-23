@@ -3,9 +3,15 @@ import { Link } from "react-router-dom";
 import styles from "./headerstyles.module.css";
 import { withRouter } from "react-router-dom";
 
+import { useSelector, useDispatch } from "react-redux"
+import { resetEmail } from "./redux/actions/user.actions"
+
 const Header = (props) => {
   const authenticated = localStorage.getItem("authenticated");
   const [isAuthenticated, setIsAuthenticated] = useState(authenticated);
+
+  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsAuthenticated(authenticated);
@@ -15,6 +21,8 @@ const Header = (props) => {
     localStorage.clear();
     setIsAuthenticated(false);
     props.history.push("/");
+
+    dispatch(resetEmail())
   };
 
   const renderLoginLogoutButton = () => {
@@ -34,6 +42,7 @@ const Header = (props) => {
           <Link to="/cart">Cart</Link>
         </li>
         <li>{renderLoginLogoutButton()}</li>
+        <li>{user.email}</li>
       </ul>
     </nav>
   );

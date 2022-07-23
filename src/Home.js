@@ -1,36 +1,21 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 
+import { useDispatch, useSelector } from "react-redux"
+
+import { addItem } from "./redux/actions/cart.actions"
 import styles from "./homestyles.module.css";
+import { getProducts } from "./redux/actions/products.actions";
 
-// [GET] https://api.escuelajs.co/api/v1/products
+const Home = () => {
+  const { items:products, loading, error  } = useSelector(state => state.products)
+  const dispatch = useDispatch();
 
-const Home = ({ cartItems, setCartItems }) => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-
-  // const [cartItems, setCartItems] = useState([]);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch("https://api.escuelajs.co/api/v1/products")
-      .then((res) => res.json())
-      .then((res) => {
-        setProducts(res);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-        setError(true);
-      });
-  }, []);
+  useEffect(() => dispatch(getProducts()) , [])
 
   const addToCart = (product) => {
-    setCartItems([...cartItems, product]);
+    dispatch(addItem(product))
   };
-
-  // console.log("cartitems ---->", cartItems);
 
   const renderProducts = () => {
     return (

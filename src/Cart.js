@@ -1,4 +1,16 @@
-const Cart = ({ cartItems }) => {
+import { useDispatch, useSelector } from "react-redux"
+
+import { removeItem } from "./redux/actions/cart.actions"
+
+const Cart = () => {
+
+  const cartItems = useSelector(state => state.cart)
+  const dispatch = useDispatch()
+
+  const removeFromCart = (id) => {
+    return dispatch(removeItem(id));
+  }
+
   const renderProducts = () => {
     return (
       <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -9,6 +21,7 @@ const Cart = ({ cartItems }) => {
               <p>{p.title}</p>
               <p>INR {p.price} </p>
               {/* <button onClick={() => addToCart(p)}>add to cart</button> */}
+              <button onClick={() => removeFromCart(p.id)}>Remove</button>
             </div>
           );
         })}
