@@ -1,0 +1,32 @@
+.background {
+  background: linear-gradient(to right, #80808027, #80808085),
+    url("https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: calc(100vh - 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.background input {
+  margin: 5px;
+  padding: 10px;
+  min-width: 250px;
+  border-radius: 5px;
+}
+
+.background button {
+  min-width: 250px;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: rgba(146, 143, 143, 0.863);
+  color: white;
+  font-weight: bold;
+}
+
+.background p {
+  color: red;
+  margin: 5px;
+}

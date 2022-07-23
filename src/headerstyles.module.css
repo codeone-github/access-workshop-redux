@@ -1,0 +1,23 @@
+.background {
+  background: rgb(196, 196, 42);
+  padding: 10px;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+}
+
+.list li {
+  padding: 5px;
+  text-decoration: none;
+}
+
+.list li a {
+  text-decoration: none;
+  color: black;
+}
+
+.list li a:hover {
+  color: blue;
+}
